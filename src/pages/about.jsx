@@ -1,4 +1,5 @@
 import PageLayout from './PageLayout'
+import { Hourglass, Scissors, Sparkles } from 'lucide-react'
 import barber1 from '../assets/barber1.jpeg'
 import barber2 from '../assets/barber2.jpeg'
 import barber3 from '../assets/barber3.jpeg'
@@ -32,7 +33,10 @@ export default function About() {
       <section className="about-reference-section">
         <p className="overline">CONVICTION &amp; DISCIPLINE</p>
         <h2>The Three Pillars of Our Ethos</h2>
-        <div className="about-pillar-grid">{pillars.map(([number, title, text, footer]) => <article key={number}><div className="about-card-top"><span>Pillar {number}</span><b>{number === '01' ? '✂' : number === '02' ? '⌛' : '✥'}</b></div><h3>{title}</h3><p>{text}</p><footer>{footer}</footer></article>)}</div>
+        <div className="about-pillar-grid">{pillars.map(([number, title, text, footer]) => {
+          const Icon = number === '01' ? Scissors : number === '02' ? Hourglass : Sparkles
+          return <article key={number}><div className="about-card-top"><span>Pillar {number}</span><b><Icon size={16} strokeWidth={1.7} aria-hidden="true" /></b></div><h3>{title}</h3><p>{text}</p><footer>{footer}</footer></article>
+        })}</div>
       </section>
 
       <section className="about-reference-section">
