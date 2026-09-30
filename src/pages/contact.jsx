@@ -92,7 +92,7 @@ export default function Contact() {
         <p className="lead">Select your preferred service, master barber and time slot. Enjoy dedicated attention in our private Mayfair suites.</p>
       </section>
 
-      <div className="booking-progress"><span className="complete">✓ <b>Step 01</b> Service</span><span className="complete">✓ <b>Step 02</b> Master Barber</span><span className="active">03 <b>Active step</b> Date &amp; Time</span><span className="muted">04 <b>Final step</b> Guest Details &amp; Sync</span></div>
+      <div className="booking-progress"><span className="complete"> <b>Step 01</b> Service</span><span className="complete"> <b>Step 02</b> Master Barber</span><span className="active">03 <b>Active step</b> Date &amp; Time</span><span className="muted">04 <b>Final step</b> Guest Details &amp; Sync</span></div>
       <section className="booking-reference-grid">
         <div className="booking-main-column">
           <div className="booking-section-heading"><span>01.</span><h2>Selected Service &amp; Ritual</h2><button type="button" onClick={() => setServiceIndex((serviceIndex + 1) % services.length)}>Change</button></div>
