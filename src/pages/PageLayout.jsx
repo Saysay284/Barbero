@@ -10,6 +10,7 @@ export default function PageLayout({ children, activePage }) {
     <div className="editorial-site">
       <div className="notice-bar">
         Inaugural visit privilege: complimentary botanical scalp therapy with code <strong>INAUGURAL</strong>
+        <span className="asset-attribution">All imagery and visual assets are sourced from the internet and Pinterest.</span>
       </div>
       <header className="editorial-header">
         <a className="editorial-brand" href="#/" onClick={closeMenu}>

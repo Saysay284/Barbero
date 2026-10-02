@@ -22,7 +22,6 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
   background: #fff;
   color: #1d1a17;
 }
@@ -853,6 +852,14 @@ main {
 .notice-bar strong {
   color: #371910;
 }
+.asset-attribution {
+  margin-left: 0.65rem;
+}
+.asset-attribution::before {
+  margin-right: 0.65rem;
+  content: "|";
+  opacity: 0.55;
+}
 .editorial-header {
   position: sticky;
   top: 0;
@@ -1313,27 +1320,30 @@ main {
   line-height: 1.5;
 }
 .home-reference-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 6vw, 5rem);
+  position: relative;
+  display: flex;
   align-items: center;
+  width: calc(100% + clamp(1.25rem, 5vw, 4rem) + clamp(1.25rem, 5vw, 4rem));
   min-height: 680px;
-  padding: 3rem 0 4rem;
-  border-bottom: 1px solid #d8c2b8;
+  margin-left: calc(-1 * clamp(1.25rem, 5vw, 4rem));
+  padding: 4rem max(1.25rem, calc((100vw - 1280px) / 2));
+  overflow: hidden;
+  background: #333;
 }
 .home-reference-copy {
-  padding-top: 3rem;
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
 }
 .home-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 7rem;
+  margin-bottom: 2.5rem;
 }
 .home-badges span {
-  padding: 0.35rem 0.6rem;
-  border: 1px solid #d8c2b8;
-  color: #53433c;
+  padding: 0.35rem 0.6rem 0.35rem 0;
+  color: #e3bd37;
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1342,44 +1352,59 @@ main {
 .home-reference-copy h1 {
   margin: 0;
   font-family: "Inter", serif;
-  font-size: clamp(3.8rem, 6vw, 6rem);
+  font-size: clamp(2.6rem, 6vw, 6rem);
   font-weight: 300;
   line-height: 0.9;
-  letter-spacing: -0.04em;
+  color: #fff;
 }
 .home-reference-copy h1 em {
-  color: #371910;
+  color: #e3bd37;
 }
 .home-reference-copy .lead {
   max-width: 580px;
   margin-top: 1.6rem;
   font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.75;
 }
 .home-reference-visual {
-  position: relative;
-  padding: 0.7rem;
-  background: #efedec;
-  border: 1px solid #d8c2b8;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
 }
 .home-reference-visual img {
   width: 100%;
-  height: 590px;
+  height: 100%;
   object-fit: cover;
+  object-position: center 38%;
+}
+.home-reference-visual::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    rgba(18, 18, 17, 0.72),
+    rgba(18, 18, 17, 0.42) 48%,
+    rgba(18, 18, 17, 0.08)
+  );
 }
 .home-reference-visual > div {
   position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  left: 0.7rem;
+  z-index: 1;
+  right: max(1.25rem, calc((100vw - 1280px) / 2));
+  bottom: 1rem;
+  width: min(390px, calc(100% - 2.5rem));
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 0.2rem 1rem;
-  padding: 0.75rem 1rem;
-  background: #fbf9f7;
-  border: 1px solid #d8c2b8;
+  padding: 0.9rem 1rem;
+  background: rgba(30, 30, 28, 0.7);
+  border: 1px solid rgba(227, 189, 55, 0.45);
+  color: #fff;
 }
 .home-reference-visual strong {
-  color: #371910;
+  color: #e3bd37;
   font-size: 0.55rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1394,6 +1419,13 @@ main {
   align-self: center;
   color: #371910;
   font-size: 0.85rem;
+}
+.home-reference-hero .editorial-stat-row div {
+  border-top-color: rgba(255, 255, 255, 0.55);
+}
+.home-reference-hero .editorial-stat-row strong,
+.home-reference-hero .editorial-stat-row span {
+  color: #fff;
 }
 .home-section {
   padding: 3.8rem 0;
@@ -1731,7 +1763,18 @@ main {
   letter-spacing: 0.08em;
 }
 .about-hero-figure b {
-  color: #371910;
+  color: #e3bd37;
+}
+.home-reference-copy .dark-button {
+  background: #e3bd37;
+  color: #1b1c1b;
+}
+.home-reference-copy .dark-button:hover {
+  background: #f0cf51;
+}
+.home-reference-copy .light-button {
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #fff;
 }
 .about-stats {
   display: grid;
@@ -1998,6 +2041,9 @@ main {
   .home-reference-copy {
     padding-top: 0;
   }
+  .home-reference-hero {
+    min-height: 720px;
+  }
   .home-badges {
     margin-bottom: 3rem;
   }
@@ -2044,7 +2090,11 @@ main {
     margin-bottom: 1rem;
   }
   .home-reference-visual img {
-    height: 430px;
+    height: 100%;
+  }
+  .home-reference-visual > div {
+    right: 1rem;
+    bottom: 1rem;
   }
   .about-reference-hero {
     grid-template-columns: 1fr;
@@ -2676,7 +2726,9 @@ main {
   .editorial-footer {
     grid-template-columns: 1fr 1fr;
   }
-  .membership-grid,
+  .membership-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .atelier-section {
     grid-template-columns: 1fr;
   }
@@ -2687,10 +2739,10 @@ main {
     grid-template-columns: 1fr;
   }
   .booking-side-column {
-    grid-row: 1;
+    grid-row: 2;
   }
   .booking-main-column {
-    grid-row: 2;
+    grid-row: 1;
   }
   .calendar-integration {
     display: block;
@@ -2700,12 +2752,42 @@ main {
   }
 }
 @media (max-width: 560px) {
+  .notice-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.58rem;
+    line-height: 1.4;
+  }
+  .asset-attribution {
+    margin-left: 0;
+  }
+  .asset-attribution::before {
+    display: none;
+  }
+  .editorial-header {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    min-height: 0;
+    padding: 0.65rem 0.75rem;
+  }
   .editorial-brand span {
-    font-size: 1.45rem;
+    font-size: 1.05rem;
+  }
+  .editorial-brand img {
+    width: 2rem;
+    height: 2rem;
+  }
+  .menu-button {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.58rem;
   }
   .editorial-book-button {
-    padding: 0.7rem 0.8rem;
-    font-size: 0.65rem;
+    order: 3;
+    padding: 0.5rem 0.55rem;
+    font-size: 0.58rem;
   }
   .service-editorial-grid,
   .ethos-grid,
@@ -2720,7 +2802,42 @@ main {
     gap: 0.5rem;
   }
   .editorial-stat-row span {
-    font-size: 0.55rem;
+    font-size: 0.62rem;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+  }
+  .home-reference-copy {
+    padding-bottom: 6rem;
+  }
+  .home-badges {
+    margin-bottom: 1.5rem;
+  }
+  .home-reference-copy .lead {
+    font-size: 0.95rem;
+  }
+  .home-reference-hero {
+    padding-inline: 1.25rem;
+  }
+  .editorial-stat-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .service-filters button,
+  .service-pills button,
+  .barber-choice-row button,
+  .slot-group button,
+  .booking-section-heading button {
+    min-height: 44px;
+  }
+  .service-filters button {
+    font-size: 0.68rem;
+  }
+  .service-pills button,
+  .barber-choice-row button {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.65rem;
+  }
+  .booking-section-heading button {
+    padding: 0.4rem;
   }
   .booking-steps {
     grid-template-columns: 1fr 1fr;
